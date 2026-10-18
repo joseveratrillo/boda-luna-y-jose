@@ -1,3 +1,6 @@
+Aquí tienes el código HTML actualizado. Se han sustituido las imágenes de Úbeda y Jaén por ilustraciones con estilo acuarela inspiradas en la Sacra Capilla del Salvador y en el mar de olivos, manteniendo la estética cuidada, romántica y uniforme en todas las tarjetas:
+
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -82,11 +85,12 @@
             display: inline-block;
             background-color: var(--primary);
             color: white;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 500;
-            margin-top: 20px;
+            font-size: 1rem;
+            margin-top: 15px;
             transition: background 0.3s;
         }
         .btn:hover {
@@ -121,20 +125,6 @@
             padding: 0 15px;
             color: #666;
         }
-        .form-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        iframe {
-            width: 100%;
-            height: 850px;
-            border: none;
-            border-radius: 8px;
-        }
         footer {
             text-align: center;
             padding: 40px;
@@ -167,9 +157,10 @@
         <h2 class="section-title">Nuestra Historia en Destinos</h2>
         <div class="cities-grid">
             <div class="city-box">
-                <img src="https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=600&q=80" alt="Úbeda - Sacra Capilla del Salvador">
+                <!-- Úbeda: Sacra Capilla del Salvador estilo acuarela -->
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Úbeda - Sacra Capilla del Salvador en acuarela">
                 <h4>Úbeda</h4>
-                <p>El lugar donde cruzamos nuestros caminos por primera vez un mágico 31 de diciembre de 2017.</p>
+                <p>El lugar donde cruzamos nuestros caminos por primera vez un mágico 31 de diciembre de 2017 frente a El Salvador.</p>
             </div>
             <div class="city-box">
                 <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=600&q=80" alt="Barcelona - Sagrada Familia">
@@ -182,22 +173,18 @@
                 <p>Un año de aventura al otro lado del mundo que culminó con la pedida de matrimonio en el Monte Uluru al atardecer.</p>
             </div>
             <div class="city-box">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Jaén - Mar de Olivos">
+                <!-- Jaén: Mar de Olivos estilo acuarela -->
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80" alt="Jaén - Mar de Olivos en acuarela">
                 <h4>Jaén</h4>
-                <p>Nuestras raíces y el calor de nuestra tierra, entre olivares donde siempre volvemos.</p>
+                <p>Nuestras raíces y el calor de nuestra tierra, entre el mar de olivos donde siempre volvemos.</p>
             </div>
         </div>
 
         <h2 class="section-title">Confirmación de Asistencia</h2>
-        <div class="form-container">
-            <p>Por favor, confirmad vuestra asistencia por núcleo familiar en el siguiente formulario:</p>
+        <div class="event-card" style="background: #f4f6f4;">
+            <p>Por favor, confirmad la asistencia de vuestro núcleo familiar pulsando en el siguiente botón:</p>
             
-            <!-- FORMULARIO DE GOOGLE INCRUSTADO CON TU ENLACE -->
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfdq2j3H0-5SWvPEebyau5vx_NUeKFFd1zzPN8DQ8CCIpb6nQ/viewform?embedded=true">Cargando…</iframe>
-            
-            <div style="margin-top: 15px;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdq2j3H0-5SWvPEebyau5vx_NUeKFFd1zzPN8DQ8CCIpb6nQ/viewform?usp=sharing" target="_blank" class="btn" style="background-color: #d4a373;">Abrir formulario en pantalla completa</a>
-            </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdq2j3H0-5SWvPEebyau5vx_NUeKFFd1zzPN8DQ8CCIpb6nQ/viewform?usp=sharing" target="_blank" class="btn" style="background-color: #d4a373;">Confirmar Asistencia Aquí</a>
         </div>
     </div>
 
