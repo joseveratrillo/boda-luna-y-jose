@@ -4,189 +4,472 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luna & Jose | Nuestra Boda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Fuentes elegantes: Cormorant Garamond (títulos) y Montserrat (texto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5a6e5f;
-            --accent: #d4a373;
-            --bg: #f9f8f6;
-            --text: #2c3531;
+            --olive-dark: #3b483c;
+            --olive-primary: #556b2f;
+            --olive-light: #8fbc8f;
+            --olive-bg: #f4f6f3;
+            --accent-gold: #c59b27;
+            --bg-cream: #faf9f6;
+            --text-main: #2e352f;
+            --white: #ffffff;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-cream);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
         }
-        h1, h2, h3 {
+
+        h1, h2, h3, h4 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
         }
+
+        /* --- BARRA DE NAVEGACIÓN Y MENÚ HAMBURGUESA --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(85, 107, 47, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--olive-dark);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* Botón de tres rayitas (Hamburguesa) */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--olive-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Menú desplegable lateral/superior */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--bg-cream);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            transition: right 0.4s ease;
+            z-index: 1000;
+        }
+
+        .nav-links.active {
+            right: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--olive-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Animación del botón al abrir */
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(8.5px) rotate(45deg);
+        }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-8.5px) rotate(-45deg);
+        }
+
+        /* Overlay oscuro de fondo al abrir menú */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- PORTADA / HEADER --- */
         header {
-            height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 90vh;
+            background: linear-gradient(rgba(46, 53, 47, 0.4), rgba(46, 53, 47, 0.4)), 
+                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
+            color: var(--white);
             padding: 0 20px;
+            margin-top: 60px;
         }
+
         header h1 {
-            font-size: 4rem;
+            font-size: 4.2rem;
             margin: 0;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
+
+        header .olive-icon {
+            font-size: 1.8rem;
+            margin: 15px 0;
+            color: #d8e2dc;
+        }
+
         header p {
-            font-size: 1.4rem;
-            margin-top: 15px;
+            font-size: 1.3rem;
+            margin: 0;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
+
+        /* --- SECCIONES Y CONTENEDORES --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 70px 20px;
         }
-        .intro {
-            text-align: center;
-            font-size: 1.3rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            color: #4a5751;
-            margin-bottom: 50px;
-        }
+
         .section-title {
             text-align: center;
-            font-size: 2.4rem;
-            color: var(--primary);
-            margin-bottom: 30px;
+            font-size: 2.6rem;
+            color: var(--olive-dark);
+            margin-bottom: 15px;
+            position: relative;
         }
-        .event-card {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+        .section-title::after {
+            content: '🫒';
+            display: block;
+            font-size: 1.1rem;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        .intro {
             text-align: center;
-            margin-bottom: 50px;
+            font-size: 1.35rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--olive-dark);
+            margin-bottom: 60px;
+            line-height: 1.8;
+            padding: 0 10px;
         }
+
+        .event-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(85, 107, 47, 0.08);
+            border: 1px solid rgba(85, 107, 47, 0.12);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
         .event-card h3 {
-            font-size: 2rem;
-            color: var(--primary);
+            font-size: 2.2rem;
+            color: var(--olive-primary);
             margin-top: 0;
         }
+
+        /* Botones estilo olivo/dorado */
         .btn {
             display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 14px 32px;
+            background-color: var(--olive-primary);
+            color: var(--white);
+            padding: 14px 34px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 1rem;
-            margin-top: 15px;
-            transition: background 0.3s;
+            font-size: 0.95rem;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(85, 107, 47, 0.2);
         }
+
         .btn:hover {
-            background-color: #435246;
+            background-color: var(--olive-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(85, 107, 47, 0.3);
         }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background-color: #a8831f;
+        }
+
+        /* Tarjetas de Historia / Destinos */
         .cities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
+            gap: 25px;
+            margin-bottom: 60px;
         }
+
         .city-box {
-            background: white;
-            border-radius: 8px;
+            background: var(--white);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            box-shadow: 0 5px 18px rgba(0,0,0,0.04);
+            border: 1px solid rgba(85, 107, 47, 0.1);
             text-align: center;
             padding-bottom: 20px;
+            transition: transform 0.3s ease;
         }
+
+        .city-box:hover {
+            transform: translateY(-5px);
+        }
+
         .city-box img {
             width: 100%;
-            height: 180px;
+            height: 190px;
             object-fit: cover;
         }
+
         .city-box h4 {
-            margin: 15px 0 5px 0;
-            font-size: 1.3rem;
-            color: var(--primary);
+            margin: 18px 0 8px 0;
+            font-size: 1.4rem;
+            color: var(--olive-primary);
         }
+
         .city-box p {
-            font-size: 0.85rem;
-            padding: 0 15px;
-            color: #666;
+            font-size: 0.88rem;
+            padding: 0 18px;
+            color: #555;
         }
+
+        /* Sección de Recomendaciones / FAQ */
+        .info-box {
+            background-color: var(--olive-bg);
+            border-left: 4px solid var(--olive-primary);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            color: var(--olive-dark);
+            font-size: 1.3rem;
+        }
+
         footer {
             text-align: center;
-            padding: 40px;
-            background-color: #f0eee9;
-            font-size: 0.9rem;
-            color: #777;
+            padding: 50px 20px;
+            background-color: var(--olive-dark);
+            color: var(--bg-cream);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 3.2rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <!-- MENÚ NAVEGACIÓN CON MENÚ HAMBURGUESA -->
+    <nav>
+        <div class="nav-container">
+            <a href="#inicio" class="nav-logo">L & J</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#inicio" class="nav-item">Inicio</a>
+                <a href="#el-dia" class="nav-item">El Gran Día</a>
+                <a href="#nuestra-historia" class="nav-item">Nuestra Historia</a>
+                <a href="#asistencia" class="nav-item">Confirmación</a>
+            </div>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- PORTADA -->
+    <header id="inicio">
         <h1>Luna & Jose</h1>
+        <div class="olive-icon">🌿 🫒 🌿</div>
         <p>8 de Mayo de 2027 — Nos Casamos</p>
     </header>
 
     <div class="container">
+        <!-- INTRODUCCIÓN -->
         <div class="intro">
-            "Hay historias que no se explican con mapas, sino con latidos. A lo largo de los años hemos construido nuestro camino recorriendo diferentes rincones del mundo, y hoy queremos celebrar con vosotros el inicio de nuestra mayor aventura."
+            "Hay historias que no se explican con mapas, sino con latidos. Entre olivares, viajes y recuerdos compartidos, hemos construido nuestro camino. Hoy queremos celebrar con vosotros el inicio de nuestra mayor aventura."
         </div>
 
-        <h2 class="section-title">El Gran Día</h2>
-        <div class="event-card">
-            <h3>Ermita Madre de Dios del Campo</h3>
-            <p><strong>Ceremonia Civil y Banquete a mediodía</strong></p>
-            <p>Os esperamos para celebrar juntos este día tan especial rodeados de alegría, amor y buena compañía.</p>
-            <a href="https://www.google.es/maps/place/Ermita+Madre+de+Dios+del+Campo/@38.0227279,-3.3579244,660m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd6ef3f3c7c27229:0xeaba9b0ac33fc78f!8m2!3d38.0227279!4d-3.3553495!16s%2Fg%2F11dztjwb29?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">Ver Ubicación en Google Maps</a>
+        <!-- SECCIÓN 1: EL GRAN DÍA -->
+        <section id="el-dia">
+            <h2 class="section-title">El Gran Día</h2>
+            <div class="event-card">
+                <h3>Ermita Madre de Dios del Campo</h3>
+                <p><strong>Ceremonia Civil y Banquete a mediodía</strong></p>
+                <p>Os esperamos para compartir un día inolvidable entre olivos, alegría y las personas que más queremos.</p>
+                <a href="https://www.google.es/maps/place/Ermita+Madre+de+Dios+del+Campo/@38.0227279,-3.3579244,660m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd6ef3f3c7c27229:0xeaba9b0ac33fc78f!8m2!3d38.0227279!4d-3.3553495!16s%2Fg%2F11dztjwb29?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">Ver Ubicación en Google Maps</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: NUESTRA HISTORIA -->
+        <section id="nuestra-historia">
+            <h2 class="section-title">Nuestra Historia en Destinos</h2>
+            <div class="cities-grid">
+                <div class="city-box">
+                    <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80" alt="Úbeda - El Salvador">
+                    <h4>Úbeda</h4>
+                    <p>Donde cruzamos nuestros caminos por primera vez un mágico 31 de diciembre de 2017 frente a la Capilla del Salvador.</p>
+                </div>
+                <div class="city-box">
+                    <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=600&q=80" alt="Barcelona - Sagrada Familia">
+                    <h4>Barcelona</h4>
+                    <p>Siete años compartiendo vida, proyectos y nuestro hogar en la ciudad condal.</p>
+                </div>
+                <div class="city-box">
+                    <img src="https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?auto=format&fit=crop&w=600&q=80" alt="Australia Uluru">
+                    <h4>Australia (Uluru) 🌅</h4>
+                    <p>Un año de aventura al otro lado del mundo y la pedida de matrimonio en el Monte Uluru al atardecer.</p>
+                </div>
+                <div class="city-box">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Jaén - Mar de Olivos">
+                    <h4>Jaén</h4>
+                    <p>Nuestras raíces y el calor de nuestra tierra, rodeados por el eterno mar de olivos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFORMACIÓN ADICIONAL -->
+        <div class="info-box">
+            <h4>🌿 Información de Interés</h4>
+            <p>La celebración se llevará a cabo íntegramente en el recinto de la Ermita Madre de Dios del Campo. En el formulario de asistencia podréis indicarnos si vais a necesitar servicio de autobús o si tenéis alguna restricción alimentaria.</p>
         </div>
 
-        <h2 class="section-title">Nuestra Historia en Destinos</h2>
-        <div class="cities-grid">
-            <div class="city-box">
-                <img src="https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=600&q=80" alt="Úbeda - Sacra Capilla del Salvador">
-                <h4>Úbeda</h4>
-                <p>El lugar donde cruzamos nuestros caminos por primera vez un mágico 31 de diciembre de 2017.</p>
+        <!-- SECCIÓN 3: CONFIRMACIÓN DE ASISTENCIA -->
+        <section id="asistencia">
+            <h2 class="section-title">Confirmación de Asistencia</h2>
+            <div class="event-card" style="background-color: var(--olive-bg);">
+                <p>Por favor, confirmad la asistencia de vuestro núcleo familiar antes de la fecha límite pulsando en el botón:</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdq2j3H0-5SWvPEebyau5vx_NUeKFFd1zzPN8DQ8CCIpb6nQ/viewform?usp=sharing" target="_blank" class="btn btn-gold">Confirmar Asistencia Aquí</a>
             </div>
-            <div class="city-box">
-                <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=600&q=80" alt="Barcelona - Sagrada Familia">
-                <h4>Barcelona</h4>
-                <p>Siete años compartiendo vida, aprendizajes y nuestro hogar juntos en la ciudad condal.</p>
-            </div>
-            <div class="city-box">
-                <img src="https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?auto=format&fit=crop&w=600&q=80" alt="Australia Uluru">
-                <h4>Australia (Uluru) 🌅</h4>
-                <p>Un año de aventura al otro lado del mundo que culminó con la pedida de matrimonio en el Monte Uluru al atardecer.</p>
-            </div>
-            <div class="city-box">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Jaén - Mar de Olivos">
-                <h4>Jaén</h4>
-                <p>Nuestras raíces y el calor de nuestra tierra, entre olivares donde siempre volvemos.</p>
-            </div>
-        </div>
-
-        <h2 class="section-title">Confirmación de Asistencia</h2>
-        <div class="event-card" style="background: #f4f6f4;">
-            <p>Por favor, confirmad la asistencia de vuestro núcleo familiar pulsando en el siguiente botón:</p>
-            
-            <!-- ENLACE DIRECTO AL FORMULARIO -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdq2j3H0-5SWvPEebyau5vx_NUeKFFd1zzPN8DQ8CCIpb6nQ/viewform?usp=sharing" target="_blank" class="btn" style="background-color: #d4a373;">Confirmar Asistencia Aquí</a>
-        </div>
+        </section>
     </div>
 
     <footer>
         <p>Luna & Jose • 08.05.2027</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Celebrando el amor entre olivos</p>
     </footer>
 
+    <!-- SCRIPT DE INTERACTIVIDAD PARA EL MENÚ HAMBURGUESA -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('open');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+
+        // Cerrar el menú automáticamente al hacer clic en cualquier sección
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
