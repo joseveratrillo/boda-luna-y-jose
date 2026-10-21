@@ -89,23 +89,26 @@
             transition: all 0.3s ease;
         }
 
-        /* Menú desplegable lateral/superior */
+        /* Menú desplegable lateral */
         .nav-links {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 75%;
-            max-width: 300px;
+            width: 80%;
+            max-width: 320px;
             height: 100vh;
             background-color: var(--bg-cream);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 100px 30px 40px 30px;
+            gap: 20px;
             box-shadow: -5px 0 20px rgba(0,0,0,0.1);
             transition: right 0.4s ease;
             z-index: 1000;
+            overflow-y: auto;
+            box-sizing: border-box;
         }
 
         .nav-links.active {
@@ -115,15 +118,65 @@
         .nav-links a {
             text-decoration: none;
             color: var(--olive-dark);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 500;
             transition: color 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 100%;
         }
 
         .nav-links a:hover {
             color: var(--accent-gold);
+        }
+
+        /* Submenú desplegable en el menú lateral */
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: var(--olive-dark);
+            font-size: 1.05rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0;
+            text-align: left;
+        }
+
+        .dropdown-btn .arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .dropdown-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-container {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            padding-left: 15px;
+            border-left: 2px solid var(--olive-light);
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        .dropdown-container a {
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #555;
+        }
+
+        .dropdown-container a:hover {
+            color: var(--olive-primary);
         }
 
         /* Animación del botón al abrir */
@@ -158,7 +211,7 @@
 
         /* --- PORTADA / HEADER --- */
         header {
-            height: 90vh;
+            height: 85vh;
             background: linear-gradient(rgba(46, 53, 47, 0.4), rgba(46, 53, 47, 0.4)), 
                         url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             display: flex;
@@ -243,7 +296,7 @@
             margin-top: 0;
         }
 
-        /* Botones estilo olivo/dorado */
+        /* Botones */
         .btn {
             display: inline-block;
             background-color: var(--olive-primary);
@@ -315,19 +368,34 @@
             color: #555;
         }
 
-        /* Sección de Recomendaciones / FAQ */
-        .info-box {
-            background-color: var(--olive-bg);
-            border-left: 4px solid var(--olive-primary);
-            padding: 25px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 40px;
+        /* Grid de Lugares de Interés */
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
         }
 
-        .info-box h4 {
-            margin-top: 0;
+        .interest-card {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(85, 107, 47, 0.15);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .interest-card h4 {
+            font-size: 1.6rem;
             color: var(--olive-dark);
-            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .interest-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
         }
 
         footer {
@@ -355,7 +423,7 @@
 </head>
 <body>
 
-    <!-- MENÚ NAVEGACIÓN CON MENÚ HAMBURGUESA -->
+    <!-- MENÚ NAVEGACIÓN -->
     <nav>
         <div class="nav-container">
             <a href="#inicio" class="nav-logo">L & J</a>
@@ -367,8 +435,20 @@
             <div class="nav-links" id="navLinks">
                 <a href="#inicio" class="nav-item">Inicio</a>
                 <a href="#el-dia" class="nav-item">El Gran Día</a>
+                <a href="#preboda" class="nav-item">Preboda</a>
                 <a href="#nuestra-historia" class="nav-item">Nuestra Historia</a>
-                <a href="#asistencia" class="nav-item">Confirmación</a>
+                
+                <!-- DESPLEGABLE LUGARES DE INTERÉS -->
+                <button class="dropdown-btn" id="dropdownBtn">
+                    Lugares de Interés <span class="arrow">▼</span>
+                </button>
+                <div class="dropdown-container" id="dropdownContainer">
+                    <a href="https://www.airbnb.es/rooms/3781021?check_in=2027-05-07&check_out=2027-05-09&search_mode=regular_search&source_impression_id=p3_3dc8e969-b13b-400f-8876-87d69135b2bf_7aa3519d-9b78-42af-9a2b-005dec4fdcab_0_3781021_0&previous_page_section_name=1000&federated_search_id=3dc8e969-b13b-400f-8876-87d69135b2bf" target="_blank">🏠 Alojamientos</a>
+                    <a href="https://www.google.es/maps/place/Restaurante+Asador+Al+Andalus/@38.0089673,-3.3766518,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICKzOukSA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgrass-cs%2FAABkmLfVCQwdGni-RwmvskygHtfwJqeJR-KKuWexDi-O3_AgTeOfhW5tv1apsbZgKT2diMkhMP-IPnsnYrvOQcrigMQHR88w0zPpfDGDt04mZ6-mnbiCVtwhd3nRxZNvMTDGsyBgmpws%3Dw129-h86-k-no!7i4928!8i3264!4m7!3m6!1s0xd6ef47c2e0112f5:0x149f717aaf108b5c!8m2!3d38.0089673!4d-3.3766518!10e5!16s%2Fg%2F1v2jf7ss?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank">🍷 Bares y Restaurantes</a>
+                    <a href="https://www.civitatis.com/es/ubeda/free-tour-ubeda/?aid=100&cmp=es_ES_Nonbrand&cmpint=_FreeTours_DestinosSecundarios_Espana_DSA" target="_blank">🏛️ Qué hacer en Úbeda (y Baeza)</a>
+                </div>
+
+                <a href="#asistencia" class="nav-item" style="margin-top: 10px;">Confirmación</a>
             </div>
         </div>
     </nav>
@@ -398,7 +478,18 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: NUESTRA HISTORIA -->
+        <!-- SECCIÓN 2: PREBODA -->
+        <section id="preboda">
+            <h2 class="section-title">Preboda</h2>
+            <div class="event-card" style="background-color: var(--olive-bg);">
+                <h3>Bienvenida de Viernes</h3>
+                <p><strong>Viernes, 7 de mayo de 2027</strong></p>
+                <p>Queremos empezar a celebrar desde la víspera. Muy pronto os confirmaremos el lugar y la hora exacta donde nos reuniremos para romper el hielo y dar el pistoletazo de salida al fin de semana.</p>
+                <p style="font-size: 0.9rem; color: #666; font-style: italic;">(Hora y lugar pendientes de determinar)</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: NUESTRA HISTORIA -->
         <section id="nuestra-historia">
             <h2 class="section-title">Nuestra Historia en Destinos</h2>
             <div class="cities-grid">
@@ -425,17 +516,34 @@
             </div>
         </section>
 
-        <!-- INFORMACIÓN ADICIONAL -->
-        <div class="info-box">
-            <h4>🌿 Información de Interés</h4>
-            <p>La celebración se llevará a cabo íntegramente en el recinto de la Ermita Madre de Dios del Campo. En el formulario de asistencia podréis indicarnos si vais a necesitar servicio de autobús o si tenéis alguna restricción alimentaria.</p>
-        </div>
+        <!-- SECCIÓN 4: LUGARES DE INTERÉS EN LA WEB -->
+        <section id="interes">
+            <h2 class="section-title">Lugares de Interés</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666;">Os dejamos algunas recomendaciones para que disfrutéis al máximo de vuestra estancia en Úbeda y sus alrededores:</p>
+            <div class="interest-grid">
+                <div class="interest-card">
+                    <h4>🏡 Alojamientos</h4>
+                    <p>Opciones seleccionadas para vuestro descanso durante el fin de semana de la boda.</p>
+                    <a href="https://www.airbnb.es/rooms/3781021?check_in=2027-05-07&check_out=2027-05-09&search_mode=regular_search&source_impression_id=p3_3dc8e969-b13b-400f-8876-87d69135b2bf_7aa3519d-9b78-42af-9a2b-005dec4fdcab_0_3781021_0&previous_page_section_name=1000&federated_search_id=3dc8e969-b13b-400f-8876-87d69135b2bf" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Ver Alojamiento</a>
+                </div>
+                <div class="interest-card">
+                    <h4>🍷 Bares y Restaurantes</h4>
+                    <p>Para disfrutar de la gastronomía jiennense y las mejores tapas de la zona.</p>
+                    <a href="https://www.google.es/maps/place/Restaurante+Asador+Al+Andalus/@38.0089673,-3.3766518,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICKzOukSA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgrass-cs%2FAABkmLfVCQwdGni-RwmvskygHtfwJqeJR-KKuWexDi-O3_AgTeOfhW5tv1apsbZgKT2diMkhMP-IPnsnYrvOQcrigMQHR88w0zPpfDGDt04mZ6-mnbiCVtwhd3nRxZNvMTDGsyBgmpws%3Dw129-h86-k-no!7i4928!8i3264!4m7!3m6!1s0xd6ef47c2e0112f5:0x149f717aaf108b5c!8m2!3d38.0089673!4d-3.3766518!10e5!16s%2Fg%2F1v2jf7ss?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Restaurante Asador Al Andalus</a>
+                </div>
+                <div class="interest-card">
+                    <h4>🏛️ Qué hacer en Úbeda</h4>
+                    <p>Descubre el casco histórico Patrimonio de la Humanidad con este Free Tour.</p>
+                    <a href="https://www.civitatis.com/es/ubeda/free-tour-ubeda/?aid=100&cmp=es_ES_Nonbrand&cmpint=_FreeTours_DestinosSecundarios_Espana_DSA" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Reservar Free Tour</a>
+                </div>
+            </div>
+        </section>
 
-        <!-- SECCIÓN 3: CONFIRMACIÓN DE ASISTENCIA -->
+        <!-- SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA -->
         <section id="asistencia">
             <h2 class="section-title">Confirmación de Asistencia</h2>
             <div class="event-card" style="background-color: var(--olive-bg);">
-                <p>Por favor, confirmad la asistencia de vuestro núcleo familiar antes de la fecha límite pulsando en el botón:</p>
+                <p>Por favor, confirmad la asistencia de vuestro núcleo familiar pulsando en el botón:</p>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdq2j3H0-5SWvPEebyau5vx_NUeKFFd1zzPN8DQ8CCIpb6nQ/viewform?usp=sharing" target="_blank" class="btn btn-gold">Confirmar Asistencia Aquí</a>
             </div>
         </section>
@@ -446,12 +554,14 @@
         <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Celebrando el amor entre olivos</p>
     </footer>
 
-    <!-- SCRIPT DE INTERACTIVIDAD PARA EL MENÚ HAMBURGUESA -->
+    <!-- SCRIPT DE INTERACTIVIDAD -->
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         const navOverlay = document.getElementById('navOverlay');
         const navItems = document.querySelectorAll('.nav-item');
+        const dropdownBtn = document.getElementById('dropdownBtn');
+        const dropdownContainer = document.getElementById('dropdownContainer');
 
         function toggleMenu() {
             menuToggle.classList.toggle('open');
@@ -462,7 +572,17 @@
         menuToggle.addEventListener('click', toggleMenu);
         navOverlay.addEventListener('click', toggleMenu);
 
-        // Cerrar el menú automáticamente al hacer clic en cualquier sección
+        // Desplegable de Lugares de Interés
+        dropdownBtn.addEventListener('click', () => {
+            dropdownBtn.classList.toggle('active');
+            if (dropdownContainer.style.display === "flex") {
+                dropdownContainer.style.display = "none";
+            } else {
+                dropdownContainer.style.display = "flex";
+            }
+        });
+
+        // Cerrar el menú automáticamente al hacer clic en secciones principales
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 if (navLinks.classList.contains('active')) {
