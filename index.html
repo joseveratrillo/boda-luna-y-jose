@@ -371,29 +371,32 @@
         /* Grid de Lugares de Interés */
         .interest-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 60px;
         }
 
         .interest-card {
             background: var(--white);
-            padding: 30px 20px;
+            padding: 25px 18px;
             border-radius: 10px;
             border: 1px solid rgba(85, 107, 47, 0.15);
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .interest-card h4 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--olive-dark);
             margin-top: 0;
             margin-bottom: 10px;
         }
 
         .interest-card p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #666;
             margin-bottom: 20px;
         }
@@ -446,6 +449,7 @@
                     <a href="https://www.airbnb.es/rooms/3781021?check_in=2027-05-07&check_out=2027-05-09&search_mode=regular_search&source_impression_id=p3_3dc8e969-b13b-400f-8876-87d69135b2bf_7aa3519d-9b78-42af-9a2b-005dec4fdcab_0_3781021_0&previous_page_section_name=1000&federated_search_id=3dc8e969-b13b-400f-8876-87d69135b2bf" target="_blank">🏠 Alojamientos</a>
                     <a href="https://www.google.es/maps/place/Restaurante+Asador+Al+Andalus/@38.0089673,-3.3766518,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICKzOukSA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgrass-cs%2FAABkmLfVCQwdGni-RwmvskygHtfwJqeJR-KKuWexDi-O3_AgTeOfhW5tv1apsbZgKT2diMkhMP-IPnsnYrvOQcrigMQHR88w0zPpfDGDt04mZ6-mnbiCVtwhd3nRxZNvMTDGsyBgmpws%3Dw129-h86-k-no!7i4928!8i3264!4m7!3m6!1s0xd6ef47c2e0112f5:0x149f717aaf108b5c!8m2!3d38.0089673!4d-3.3766518!10e5!16s%2Fg%2F1v2jf7ss?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank">🍷 Bares y Restaurantes</a>
                     <a href="https://www.civitatis.com/es/ubeda/free-tour-ubeda/?aid=100&cmp=es_ES_Nonbrand&cmpint=_FreeTours_DestinosSecundarios_Espana_DSA" target="_blank">🏛️ Qué hacer en Úbeda (y Baeza)</a>
+                    <a href="https://www.google.es/maps/place/Sal%C3%B3n+de+Belleza+Puri/@38.011499,-3.369757,219m/data=!3m1!1e3!4m11!1m3!2m2!1speluqueria!6e1!3m6!1s0xd6ef4776b2ca84b:0xf36789461646cc2b!8m2!3d38.0113275!4d-3.367972!15sCgpwZWx1cXVlcmlhWgwiCnBlbHVxdWVyaWGSAQxiZWF1dHlfc2Fsb26aASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVTjZjR0ZQWWtsbkVBReABAPoBBAgtEEo!16s%2Fg%2F11cjhk16y4?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank">✂️ Peluquerías</a>
                 </div>
 
                 <a href="#asistencia" class="nav-item" style="margin-top: 10px;">Confirmación</a>
@@ -522,19 +526,32 @@
             <p style="text-align: center; margin-bottom: 30px; color: #666;">Os dejamos algunas recomendaciones para que disfrutéis al máximo de vuestra estancia en Úbeda y sus alrededores:</p>
             <div class="interest-grid">
                 <div class="interest-card">
-                    <h4>🏡 Alojamientos</h4>
-                    <p>Opciones seleccionadas para vuestro descanso durante el fin de semana de la boda.</p>
+                    <div>
+                        <h4>🏡 Alojamientos</h4>
+                        <p>Opciones seleccionadas para vuestro descanso durante el fin de semana de la boda.</p>
+                    </div>
                     <a href="https://www.airbnb.es/rooms/3781021?check_in=2027-05-07&check_out=2027-05-09&search_mode=regular_search&source_impression_id=p3_3dc8e969-b13b-400f-8876-87d69135b2bf_7aa3519d-9b78-42af-9a2b-005dec4fdcab_0_3781021_0&previous_page_section_name=1000&federated_search_id=3dc8e969-b13b-400f-8876-87d69135b2bf" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Ver Alojamiento</a>
                 </div>
                 <div class="interest-card">
-                    <h4>🍷 Bares y Restaurantes</h4>
-                    <p>Para disfrutar de la gastronomía jiennense y las mejores tapas de la zona.</p>
-                    <a href="https://www.google.es/maps/place/Restaurante+Asador+Al+Andalus/@38.0089673,-3.3766518,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICKzOukSA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgrass-cs%2FAABkmLfVCQwdGni-RwmvskygHtfwJqeJR-KKuWexDi-O3_AgTeOfhW5tv1apsbZgKT2diMkhMP-IPnsnYrvOQcrigMQHR88w0zPpfDGDt04mZ6-mnbiCVtwhd3nRxZNvMTDGsyBgmpws%3Dw129-h86-k-no!7i4928!8i3264!4m7!3m6!1s0xd6ef47c2e0112f5:0x149f717aaf108b5c!8m2!3d38.0089673!4d-3.3766518!10e5!16s%2Fg%2F1v2jf7ss?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Restaurante Asador Al Andalus</a>
+                    <div>
+                        <h4>🍷 Bares y Restaurantes</h4>
+                        <p>Para disfrutar de la gastronomía jiennense y las mejores tapas de la zona.</p>
+                    </div>
+                    <a href="https://www.google.es/maps/place/Restaurante+Asador+Al+Andalus/@38.0089673,-3.3766518,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICKzOukSA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgrass-cs%2FAABkmLfVCQwdGni-RwmvskygHtfwJqeJR-KKuWexDi-O3_AgTeOfhW5tv1apsbZgKT2diMkhMP-IPnsnYrvOQcrigMQHR88w0zPpfDGDt04mZ6-mnbiCVtwhd3nRxZNvMTDGsyBgmpws%3Dw129-h86-k-no!7i4928!8i3264!4m7!3m6!1s0xd6ef47c2e0112f5:0x149f717aaf108b5c!8m2!3d38.0089673!4d-3.3766518!10e5!16s%2Fg%2F1v2jf7ss?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Asador Al Andalus</a>
                 </div>
                 <div class="interest-card">
-                    <h4>🏛️ Qué hacer en Úbeda</h4>
-                    <p>Descubre el casco histórico Patrimonio de la Humanidad con este Free Tour.</p>
+                    <div>
+                        <h4>🏛️ Qué hacer en Úbeda</h4>
+                        <p>Descubre el casco histórico Patrimonio de la Humanidad con este Free Tour.</p>
+                    </div>
                     <a href="https://www.civitatis.com/es/ubeda/free-tour-ubeda/?aid=100&cmp=es_ES_Nonbrand&cmpint=_FreeTours_DestinosSecundarios_Espana_DSA" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Reservar Free Tour</a>
+                </div>
+                <div class="interest-card">
+                    <div>
+                        <h4>✂️ Peluquerías</h4>
+                        <p>Opción de peluquería y estética recomendada para poneros a punto para el gran día.</p>
+                    </div>
+                    <a href="https://www.google.es/maps/place/Sal%C3%B3n+de+Belleza+Puri/@38.011499,-3.369757,219m/data=!3m1!1e3!4m11!1m3!2m2!1speluqueria!6e1!3m6!1s0xd6ef4776b2ca84b:0xf36789461646cc2b!8m2!3d38.0113275!4d-3.367972!15sCgpwZWx1cXVlcmlhWgwiCnBlbHVxdWVyaWGSAQxiZWF1dHlfc2Fsb26aASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVTjZjR0ZQWWtsbkVBReABAPoBBAgtEEo!16s%2Fg%2F11cjhk16y4?hl=es&entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Salón de Belleza Puri</a>
                 </div>
             </div>
         </section>
